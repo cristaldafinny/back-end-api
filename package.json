@@ -1,0 +1,13 @@
+{
+  "name": "apeizinha",
+  "version": "1.0.0",
+  "description": "essa api é a minha primeira tentativa e ela é muito legal",
+  "main": "server.js",
+  "scripts": {
+  
+  },
+  "keywords": [],
+  "author": "Cristal Dáfinny Sousa de Oliveira",
+  "license": "ISC",
+  "type": "module"
+}
