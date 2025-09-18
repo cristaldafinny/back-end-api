@@ -2,6 +2,7 @@ import pkg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();         // Carrega e processa o arquivo .env
+console.log("O valor de URL_BD é:", process.env.URL_BD); 
 const { Pool } = pkg;    // Utiliza a Classe Pool do Postgres
 import express from "express";      // Requisição do pacote do express
 const app = express();              // Instancia o Express
