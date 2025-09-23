@@ -8,6 +8,15 @@ import express from "express";      // Requisição do pacote do express
 const app = express();              // Instancia o Express
 const port = 3000;                  // Define a porta
 
+app.get("/questoes", async (req, res) => {
+    const db = new Pool({  
+  connectionString: process.env.URL_BD
+  res.json({
+    message: "UUUUUUUUUUUUUUUUUU"
+  })
+});
+
+
 app.get("/", async (req, res) => {        // Cria endpoint na rota da raiz do projeto
   console.log("Rota GET / solicitada");
   
