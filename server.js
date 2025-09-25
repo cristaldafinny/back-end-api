@@ -12,14 +12,26 @@ const app = express(); // Inicializa o servidor Express
 const port = 3000; // Define a porta onde o servidor irá escutar
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 const { Pool } = pkg; // Obtém o construtor Pool do pacote pg para gerenciar conexões com o banco de dados PostgreSQL
+//server.js
+let pool = null; // Variável para armazenar o pool de conexões com o banco de dados
+
+// Função para obter uma conexão com o banco de dados
+function conectarBD() {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.URL_BD,
+    });
+  }
+  return pool;
+}
 
 // ######
 // Local onde as rotas (endpoints) serão definidas
 // ######
 
 
-
 app.get("/", async (req, res) => {
+  const db = conectarBD(); // Cria uma nova instância do Pool para gerenciar conexões com o banco de dados
   // Rota raiz do servidor
   // Rota GET /
   // Esta rota é chamada quando o usuário acessa a raiz do servidor
@@ -28,10 +40,7 @@ app.get("/", async (req, res) => {
 
   console.log("Rota GET / solicitada"); // Log no terminal para indicar que a rota foi acessada
 
-  const db = new Pool({
-    // Cria uma nova instância do Pool para gerenciar conexões com o banco de dados
-    connectionString: process.env.URL_BD, // Usa a variável de ambiente do arquivo .env DATABASE_URL para a string de conexão
-  });
+
 
   let dbStatus = "ok";
 
@@ -52,14 +61,8 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/questoes", async (req, res) => {
+  const db = conectarBD(); // Cria uma nova instância do Pool para gerenciar conexões com o banco de dados
   console.log("Rota GET /questoes solicitada"); // Log no terminal para indicar que a rota foi acessada
-
-  const { Pool } = pkg; // Obtém o construtor Pool do pacote pg para gerenciar conexões com o banco de dados PostgreSQL
-
-  const db = new Pool({
-    // Cria uma nova instância do Pool para gerenciar conexões com o banco de dados
-    connectionString: process.env.URL_BD, // Usa a variável de ambiente do arquivo .env DATABASE_URL para a string de conexão
-  });
 
   try {
     const resultado = await db.query("SELECT * FROM questoes"); // Executa uma consulta SQL para selecionar todas as questões
