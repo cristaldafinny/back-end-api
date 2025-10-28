@@ -1,0 +1,19 @@
+meta {
+  name: postUsuarios
+  type: http
+  seq: 9
+}
+
+post {
+  url: https://petrifying-sorcery-jj96g99pv497hqgrr-3000.app.github.dev/usuarios
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "nome": "maria clara",
+      "email": "lkmoknclara@email.com",
+      "senha": "123456"
+    }
+}
