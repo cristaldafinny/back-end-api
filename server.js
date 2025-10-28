@@ -15,6 +15,8 @@ const { Pool } = pkg; // Obtém o construtor Pool do pacote pg para gerenciar co
 //server.js
 let pool = null; // Variável para armazenar o pool de conexões com o banco de dados
 
+app.use(express.json());
+
 // Função para obter uma conexão com o banco de dados
 function conectarBD() {
   if (!pool) {
